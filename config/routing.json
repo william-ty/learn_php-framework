@@ -1,0 +1,11 @@
+{
+  "/": "HomeController",
+  "/home": "HomeControdller",
+  "/home/index": [
+    "HomeController",
+    "index"
+  ],
+  "/unknown": "UnknownController",
+  "/admin": "AdminController",
+  "/test": "TestController"
+}

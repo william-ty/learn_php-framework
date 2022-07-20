@@ -1,0 +1,18 @@
+version: "3"
+services:
+  websrv:
+    container_name: '${COMPOSE_PROJECT_NAME}'
+    build:
+      context: ../
+      dockerfile: docker/bin/${COMPOSE_PHP_VERSION}/Dockerfile
+    ports:
+      - "${COMPOSE_EXPOSE_PORTS}:80"
+    volumes:
+      - ../:/var/www/html/${COMPOSE_PROJECT_DIR}
+      - ./config/php.ini:/usr/local/etc/php/php.ini
+      - ./config/vhost.conf:/etc/apache2/sites-enabled/vhost.conf
+    networks:
+      - webserver
+networks:
+  webserver:
+    driver: bridge
