@@ -6,6 +6,8 @@ use Novus\App\Router;
 use Novus\App\ErrorHandler;
 use Novus\App\Config;
 use Novus\App\Autoloader;
+use Novus\App\Helper;
+use Novus\App\DAO;
 // use Novus\Controller;
 // use Novus\Controller\HomeController;
 
@@ -17,6 +19,7 @@ require_once "app/Router.php";
 
 include "app/ErrorHandler.php";
 include "app/Config.php";
+include "app/DAO.php";
 include "app/Helper.php";
 
 // Handle PHP Errors
@@ -24,21 +27,16 @@ ErrorHandler::handlePHPErrors();
 
 // Define gloabal variables
 define('DS', DIRECTORY_SEPARATOR);
-define('ROOT_DIR', '.'.DS); // "./"
-$GLOBALS['root_dir'] =  $_SERVER["DOCUMENT_ROOT"];
+define('ROOT_DIR', '.' . DS); // "./"
+$GLOBALS['root_dir'] = $_SERVER["DOCUMENT_ROOT"];
 $GLOBALS['base_dir'] = str_replace(__DIR__, '/', $_SERVER["DOCUMENT_ROOT"]);
-$GLOBALS['view_path'] = $GLOBALS['root_dir'].'template'.DS;
+$GLOBALS['view_path'] = $GLOBALS['root_dir'] . 'template' . DS;
 
+// Load PDO config 
+(new Config(__DIR__ . '/.env'))->load();
 
 // Handle Request
 $result = Router::handleRequest();
-
-Router::getRouting();
-
-// (new Config(__DIR__ .  '/config/routing.json'))->loadJson();
-// (new Config(__DIR__ .  '/.env'))->load();
-// echo getEnv('test');
-
 
 switch ($result) {
   case null:
@@ -54,8 +52,8 @@ switch ($result) {
     $data = isset($result['data']) ? $result['data'] : null;
     $pageName = isset($result['page_name']) ? $result['page_name'] : null;
     $view = isset($result['view']) ? $result['view'] : null;
-    $view && include $GLOBALS['view_path'].$result['view'];
-  
+    $view && include $GLOBALS['view_path'] . $result['view'];
+
     include "templates/base.php";
     break;
 }

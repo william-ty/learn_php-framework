@@ -1,5 +1,6 @@
 <?php
 
+namespace Novus\App;
 abstract class Helper
 {
   static function prettyVarExport($data)

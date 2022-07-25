@@ -1,11 +1,27 @@
 {
   "/": "HomeController",
-  "/home": "HomeControdller",
+  "/home": "HomeController",
   "/home/index": [
     "HomeController",
     "index"
   ],
   "/unknown": "UnknownController",
   "/admin": "AdminController",
+  "/admin/contents": [
+    "AdminController",
+    "contents"
+  ],
+  "/admin/contents/search": [
+    "AdminController",
+    "search"
+  ],
+  "/admin/contents/:id/name": [
+    "AdminController",
+    "readName"
+  ],
+  "/admin/contents/:id/name/:method": [
+    "AdminController",
+    "editContentName"
+  ],
   "/test": "TestController"
 }

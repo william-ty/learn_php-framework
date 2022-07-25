@@ -4,6 +4,8 @@ namespace Novus\App;
 
 class Config
 {
+
+  static $config = array();
   protected string $filePath;
   protected string $fileExtension;
 
@@ -41,9 +43,10 @@ class Config
         $value = trim($value);
 
         if (!array_key_exists($name, $_SERVER) && !array_key_exists($name, $_ENV)) {
-          putenv(sprintf('%s=%s', $name, $value));
-        // $_ENV[$name] = $value;
-        // $_SERVER[$name] = $value;
+          // putenv(sprintf('%s=%s', $name, $value)); // echo getEnv('host');
+          // $_ENV[$name] = $value;
+
+          self::$config[$name] = $value;
         }
 
       }

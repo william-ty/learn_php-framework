@@ -12,7 +12,7 @@ class HomeController {
       "page_name" => $ctrlName,
       "data" => [
         "welcome" => "Welcome to novus!",
-        "view" => "home/welcome.php"
+        "view" => "home/welcome.php",
       ]
     ];
   }
