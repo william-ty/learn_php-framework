@@ -1,3 +1,3 @@
 # learn_php-framework
 
-Basic PHP OOP Framework for practice.
+Basic OOP PHP Web Framework for practice.
